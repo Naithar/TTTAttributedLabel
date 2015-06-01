@@ -105,9 +105,16 @@ static inline NSRegularExpression * ParenthesisRegularExpression() {
         UIFont *boldSystemFont = [UIFont boldSystemFontOfSize:kEspressoDescriptionTextFontSize];
         CTFontRef boldFont = CTFontCreateWithName((__bridge CFStringRef)boldSystemFont.fontName, boldSystemFont.pointSize, NULL);
         if (boldFont) {
+            [mutableAttributedString setAttributes:@{
+                                                     NSForegroundColorAttributeName : [UIColor redColor],
+                                                     kTTTCustomLinkAttributeName : @YES
+                                                     } range:nameRange];
+            
             [mutableAttributedString removeAttribute:(__bridge NSString *)kCTFontAttributeName range:nameRange];
             [mutableAttributedString addAttribute:(__bridge NSString *)kCTFontAttributeName value:(__bridge id)boldFont range:nameRange];
             CFRelease(boldFont);
+            
+            
         }
         
         [mutableAttributedString replaceCharactersInRange:nameRange withString:[[[mutableAttributedString string] substringWithRange:nameRange] uppercaseString]];
