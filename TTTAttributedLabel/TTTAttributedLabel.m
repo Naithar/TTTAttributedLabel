@@ -611,9 +611,12 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
         NSDictionary *currentAttributes = [attributedString
                                            attributesAtIndex:result.range.location
                                            effectiveRange:nil];
+        
         BOOL usesCustomLink = [currentAttributes[kTTTCustomLinkAttributeName] isEqual:@YES];
         
-        TTTAttributedLabelLink *link = [[TTTAttributedLabelLink alloc] initWithAttributes:usesCustomLink ? nil : attributes
+        TTTAttributedLabelLink *link = [[TTTAttributedLabelLink alloc] initWithAttributes:(usesCustomLink
+                                                                                           ? nil
+                                                                                           : attributes)
                                                                          activeAttributes:activeAttributes
                                                                        inactiveAttributes:inactiveAttributes
                                                                        textCheckingResult:result];
