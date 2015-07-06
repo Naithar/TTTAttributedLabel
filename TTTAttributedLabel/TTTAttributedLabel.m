@@ -1133,7 +1133,9 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
     self.activeLink = nil;
 
     self.linkModels = [NSArray array];
-    if (self.attributedText && self.enabledTextCheckingTypes) {
+    if (self.attributedText
+        && self.enabledTextCheckingTypes
+        && self.attributedText.string) {
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < 50000
         __unsafe_unretained __typeof(self)weakSelf = self;
 #else
