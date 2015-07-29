@@ -1145,7 +1145,8 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
             __strong __typeof(weakSelf)strongSelf = weakSelf;
 
             NSDataDetector *dataDetector = strongSelf.dataDetector;
-            if (dataDetector && [dataDetector respondsToSelector:@selector(matchesInString:options:range:)]) {
+            if (dataDetector && [dataDetector respondsToSelector:@selector(matchesInString:options:range:)]
+            	&& [(NSAttributedString *)text string]) {
                 NSArray *results = [dataDetector matchesInString:[(NSAttributedString *)text string] options:0 range:NSMakeRange(0, [(NSAttributedString *)text length])];
                 if ([results count] > 0) {
                     dispatch_sync(dispatch_get_main_queue(), ^{
